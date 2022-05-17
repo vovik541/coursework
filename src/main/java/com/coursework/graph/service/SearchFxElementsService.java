@@ -1,7 +1,7 @@
 package com.coursework.graph.service;
 
-import com.coursework.graph.entity.GraphEdge;
-import com.coursework.graph.entity.GraphNode;
+import com.coursework.graph.entity.nodeextension.GraphEdge;
+import com.coursework.graph.entity.nodeextension.GraphNode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import org.springframework.stereotype.Service;
@@ -32,12 +32,14 @@ public class SearchFxElementsService {
                 .map(x -> (Text) x)
                 .findFirst();
     }
+
     public Optional<GraphEdge> findGraphEdgeById(AnchorPane rootPane, String id) {
         return rootPane.getChildren().stream()
                 .filter(x -> x.getId() != null && x.getId().equals(id))
                 .map(x -> (GraphEdge) x)
                 .findFirst();
     }
+
     public List<GraphEdge> findAllGraphEdges(AnchorPane rootPane) {
         return rootPane.getChildren().stream()
                 .filter(x -> x.getId() != null && x.getId().contains("Edge_"))

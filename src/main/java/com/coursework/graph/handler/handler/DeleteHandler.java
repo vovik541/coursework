@@ -1,7 +1,7 @@
 package com.coursework.graph.handler.handler;
 
-import com.coursework.graph.entity.GraphEdge;
-import com.coursework.graph.entity.GraphNode;
+import com.coursework.graph.entity.nodeextension.GraphEdge;
+import com.coursework.graph.entity.nodeextension.GraphNode;
 import javafx.scene.layout.AnchorPane;
 
 import java.util.List;
@@ -15,8 +15,8 @@ public class DeleteHandler extends AbstractEventHandler {
 
             List<GraphEdge> edges = search.findAllGraphEdges(rootPane);
 
-            for (GraphEdge edge : edges){
-                if (edge.getBeginNodeId() == node.getNodeId() || edge.getEndNodeId() == node.getNodeId()){
+            for (GraphEdge edge : edges) {
+                if (edge.getBeginNodeId() == node.getNodeId() || edge.getEndNodeId() == node.getNodeId()) {
                     rootPane.getChildren().remove(edge);
                 }
             }

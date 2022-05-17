@@ -2,16 +2,10 @@ package com.coursework.graph.service;
 
 import com.coursework.graph.algorithm.Algorithm;
 import com.coursework.graph.algorithm.GreedAlgorithm;
-import com.coursework.graph.configs.AlgorithmType;
-import com.coursework.graph.entity.Graph;
-import com.coursework.graph.entity.GraphEdge;
-import com.coursework.graph.entity.GraphNode;
-import com.coursework.graph.javafxappication.JavaFxApplication;
-import javafx.application.Platform;
-import javafx.concurrent.Task;
+import com.coursework.graph.entity.nodeextension.Graph;
+import com.coursework.graph.entity.nodeextension.GraphEdge;
+import com.coursework.graph.entity.nodeextension.GraphNode;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +31,7 @@ public class AlgorithmService {
         if (GREED_ALGORITHM.getValue().equals(algorithmName)) {
             return new GreedAlgorithm();
         } else {
-            return null;
+            return null; //todo
         }
     }
 

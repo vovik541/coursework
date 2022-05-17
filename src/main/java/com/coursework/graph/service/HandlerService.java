@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class HandlerService {
-    public void changeHandler(AnchorPane rootPane, AbstractEventHandler handler){
+    public void changeHandler(AnchorPane rootPane, AbstractEventHandler handler) {
         handler.changeHandler(rootPane);
     }
 }

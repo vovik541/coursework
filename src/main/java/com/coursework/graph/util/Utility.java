@@ -9,7 +9,7 @@ import java.util.Objects;
 
 public class Utility {
     @SneakyThrows
-    public static Parent getParent(String parentPath){
+    public static Parent getParent(String parentPath) {
         return FXMLLoader.load(Objects.requireNonNull(JavaFxApplication.class.getResource(parentPath)));
     }
 }

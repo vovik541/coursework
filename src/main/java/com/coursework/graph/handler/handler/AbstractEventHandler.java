@@ -1,6 +1,6 @@
 package com.coursework.graph.handler.handler;
 
-import com.coursework.graph.entity.GraphNode;
+import com.coursework.graph.entity.nodeextension.GraphNode;
 import com.coursework.graph.service.SearchFxElementsService;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -25,7 +25,6 @@ public abstract class AbstractEventHandler {
     }
 
     public abstract void changeHandler(AnchorPane rootPane, GraphNode node);
-
 
 
     protected void changeColor(GraphNode graphNode, Color color) {

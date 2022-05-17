@@ -1,4 +1,4 @@
-package com.coursework.graph.entity;
+package com.coursework.graph.entity.nodeextension;
 
 import javafx.scene.shape.Line;
 
@@ -6,9 +6,10 @@ public class GraphEdge extends Line {
     private int beginNodeId;
     private int endNodeId;
 
-    public boolean isConnectedToNodeId(int nodeId){
+    public boolean isConnectedToNodeId(int nodeId) {
         return beginNodeId == nodeId || endNodeId == nodeId;
     }
+
     public int getBeginNodeId() {
         return beginNodeId;
     }

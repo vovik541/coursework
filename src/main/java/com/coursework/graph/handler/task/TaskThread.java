@@ -1,7 +1,7 @@
 package com.coursework.graph.handler.task;
 
-import com.coursework.graph.entity.GraphEdge;
-import com.coursework.graph.entity.GraphNode;
+import com.coursework.graph.entity.nodeextension.GraphEdge;
+import com.coursework.graph.entity.nodeextension.GraphNode;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.scene.paint.Color;
@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Map;
 
 public class TaskThread extends Task<Void> {
-
     LinkedHashMap<GraphNode, List<GraphEdge>> displayStack;
 
     public TaskThread(LinkedHashMap<GraphNode, List<GraphEdge>> displayStack) {
@@ -24,15 +23,13 @@ public class TaskThread extends Task<Void> {
         for (Map.Entry<GraphNode, List<GraphEdge>> entry : displayStack.entrySet()) {
 
             Thread.sleep(1000);
-            Platform.runLater(new Runnable() {
-                public void run() {
-                    entry.getKey().setFill(Color.RED);
-                    for (GraphEdge edge : entry.getValue()) {
-                        edge.setStrokeWidth(4);
-                        edge.setStroke(Color.RED);
-                        edge.setStrokeLineCap(StrokeLineCap.SQUARE);
-                        edge.toBack();
-                    }
+            Platform.runLater(() -> {
+                entry.getKey().setFill(Color.RED);
+                for (GraphEdge edge : entry.getValue()) {
+                    edge.setStrokeWidth(4);
+                    edge.setStroke(Color.RED);
+                    edge.setStrokeLineCap(StrokeLineCap.SQUARE);
+                    edge.toBack();
                 }
             });
         }

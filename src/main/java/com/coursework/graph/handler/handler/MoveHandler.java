@@ -1,6 +1,6 @@
 package com.coursework.graph.handler.handler;
 
-import com.coursework.graph.entity.GraphNode;
+import com.coursework.graph.entity.nodeextension.GraphNode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 

@@ -1,7 +1,7 @@
 package com.coursework.graph.handler.handler;
 
-import com.coursework.graph.entity.GraphEdge;
-import com.coursework.graph.entity.GraphNode;
+import com.coursework.graph.entity.nodeextension.GraphEdge;
+import com.coursework.graph.entity.nodeextension.GraphNode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.StrokeLineCap;
@@ -13,7 +13,7 @@ public class ConnectHandler extends AbstractEventHandler {
     public void changeHandler(AnchorPane rootPane, GraphNode node) {
         node.setOnMousePressed((x) -> {
             if (connectToId != null && !connectToId.equals(node.getId())) {
-                if (noEdgeFound(rootPane, node)){
+                if (noEdgeFound(rootPane, node)) {
                     Optional<GraphNode> byId = search.findGraphNodeById(rootPane, connectToId);
                     GraphEdge connected = connect(node, byId.get());
                     rootPane.getChildren().add(connected);

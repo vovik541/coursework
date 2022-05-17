@@ -1,6 +1,5 @@
-package com.coursework.graph.entity;
+package com.coursework.graph.entity.nodeextension;
 
-import com.sun.javafx.geom.Edge;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -39,11 +38,11 @@ public class Graph {
         return edgesByNode;
     }
 
-    public void deleteNodeFromGraph(GraphNode node){
+    public void deleteNodeFromGraph(GraphNode node) {
         this.nodes.remove(node);
     }
 
-    public void deleteEdgesFromGraph(List<GraphEdge> edges){
+    public void deleteEdgesFromGraph(List<GraphEdge> edges) {
         this.edges.removeAll(edges);
     }
 

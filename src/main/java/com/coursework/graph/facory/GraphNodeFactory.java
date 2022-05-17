@@ -1,6 +1,6 @@
 package com.coursework.graph.facory;
 
-import com.coursework.graph.entity.GraphNode;
+import com.coursework.graph.entity.nodeextension.GraphNode;
 import com.coursework.graph.handler.handler.AbstractEventHandler;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -41,7 +41,7 @@ public class GraphNodeFactory {
         rootPane.getChildren().addAll(graphNode, text);
     }
 
-    private int generateNumberOfRaw(AnchorPane rootPane){
+    private int generateNumberOfRaw(AnchorPane rootPane) {
         List<GraphNode> nodes = rootPane.getChildren().stream()
                 .filter(x -> x.getId() != null && x.getId().contains("Node_"))
                 .map(x -> (GraphNode) x)
@@ -49,12 +49,12 @@ public class GraphNodeFactory {
 
         nodes.sort(Comparator.comparingInt(GraphNode::getNodeId));
 
-        for (int i = 1; i <= nodes.size(); i++){
-            if (i != nodes.get(i-1).getNodeId()){
+        for (int i = 1; i <= nodes.size(); i++) {
+            if (i != nodes.get(i - 1).getNodeId()) {
                 return i;
             }
         }
-        return nodes.size()+1;
+        return nodes.size() + 1;
     }
 
 }

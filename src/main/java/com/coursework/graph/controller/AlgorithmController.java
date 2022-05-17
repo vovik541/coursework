@@ -7,11 +7,14 @@ import com.coursework.graph.handler.handler.MoveHandler;
 import com.coursework.graph.facory.GraphNodeFactory;
 import com.coursework.graph.service.AlgorithmService;
 import com.coursework.graph.service.HandlerService;
+import com.coursework.graph.service.SaveLoadService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.RadioButton;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import lombok.NoArgsConstructor;
@@ -22,6 +25,7 @@ import org.springframework.stereotype.Component;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.WeakHashMap;
 
 import static com.coursework.graph.configs.AlgorithmType.APPROX_VERTEX_ALGORITHM;
 import static com.coursework.graph.configs.AlgorithmType.GREED_ALGORITHM;
@@ -43,6 +47,8 @@ public class AlgorithmController implements Initializable {
     private Text algorithmLabel;
     @FXML
     private ChoiceBox<String> chooseAlgorithm;
+    @FXML
+    private ImageView saveIcon;
     @Autowired
     private GraphNodeFactory graphNodeFactory;
     @Autowired
@@ -50,33 +56,42 @@ public class AlgorithmController implements Initializable {
     @Autowired
     private AlgorithmService algorithmService;
 
+    @Autowired
+    private SaveLoadService saveLoadService;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         chooseAlgorithm.getItems().addAll(GREED_ALGORITHM.getValue(), APPROX_VERTEX_ALGORITHM.getValue());
         chooseAlgorithm.setOnAction(this::getAlgorithm);
         chooseAlgorithm.setValue("Greed Algorithm");
+        saveIcon.setOnMouseClicked(x -> saveLoadService.saveGraph(rootPane));
     }
+
     public void getAlgorithm(ActionEvent event) {
         String value = chooseAlgorithm.getValue();
         algorithmLabel.setText(value);
     }
+
     public void createNode(ActionEvent event) {
         AbstractEventHandler handler;
-        if (connectNodesRB.isSelected()){
+        if (connectNodesRB.isSelected()) {
             handler = new ConnectHandler();
-        }else if (moveNodeRB.isSelected()){
+        } else if (moveNodeRB.isSelected()) {
             handler = new MoveHandler();
         } else {
             handler = new DeleteHandler();
         }
         graphNodeFactory.createGraphNode(rootPane, handler);
     }
+
     public void moveNoteSelected(ActionEvent event) {
         handlerService.changeHandler(rootPane, new MoveHandler());
     }
+
     public void connectNoteSelected(ActionEvent event) {
         handlerService.changeHandler(rootPane, new ConnectHandler());
     }
+
     public void deleteNoteSelected(ActionEvent event) {
         handlerService.changeHandler(rootPane, new DeleteHandler());
     }
@@ -85,4 +100,5 @@ public class AlgorithmController implements Initializable {
     public void runAlgorithm(ActionEvent event) {
         algorithmService.findCoverage(rootPane, chooseAlgorithm.getValue());
     }
+
 }
