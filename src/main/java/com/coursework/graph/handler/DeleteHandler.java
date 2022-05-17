@@ -1,4 +1,4 @@
-package com.coursework.graph.handlers;
+package com.coursework.graph.handler;
 
 import com.coursework.graph.entity.GraphEdge;
 import com.coursework.graph.entity.GraphNode;
@@ -11,10 +11,9 @@ public class DeleteHandler extends AbstractEventHandler {
     public void changeHandler(AnchorPane rootPane, GraphNode node) {
         node.setOnMousePressed((t) -> {
             String textId = "Text_" + node.getNodeId();
-            rootPane.getChildren().remove(findNodeTextById(rootPane, textId).get());
+            rootPane.getChildren().remove(search.findNodeTextById(rootPane, textId).get());
 
-            String beginningId = "Edge_";
-            List<GraphEdge> edges = findAllEdgesByBeginningId(rootPane, beginningId);
+            List<GraphEdge> edges = search.findAllGraphEdges(rootPane);
 
             for (GraphEdge edge : edges){
                 if (edge.getBeginNodeId() == node.getNodeId() || edge.getEndNodeId() == node.getNodeId()){

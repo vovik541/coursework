@@ -1,11 +1,8 @@
-package com.coursework.graph.handlers;
+package com.coursework.graph.handler;
 
 import com.coursework.graph.entity.GraphNode;
-import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
-
-import java.util.List;
 
 public class MoveHandler extends AbstractEventHandler {
     @Override

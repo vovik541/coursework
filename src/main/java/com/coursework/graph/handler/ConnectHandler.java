@@ -1,10 +1,11 @@
-package com.coursework.graph.handlers;
+package com.coursework.graph.handler;
 
 import com.coursework.graph.entity.GraphEdge;
 import com.coursework.graph.entity.GraphNode;
+import com.coursework.graph.service.SearchFxElementsService;
+import com.google.inject.Inject;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
 import javafx.scene.shape.StrokeLineCap;
 
 import java.util.Optional;
@@ -15,7 +16,7 @@ public class ConnectHandler extends AbstractEventHandler {
         node.setOnMousePressed((x) -> {
             if (connectToId != null && !connectToId.equals(node.getId())) {
                 if (noEdgeFound(rootPane, node)){
-                    Optional<GraphNode> byId = findGraphNodeById(rootPane, connectToId);
+                    Optional<GraphNode> byId = search.findGraphNodeById(rootPane, connectToId);
                     GraphEdge connected = connect(node, byId.get());
                     rootPane.getChildren().add(connected);
                     connectToId = null;
@@ -50,10 +51,10 @@ public class ConnectHandler extends AbstractEventHandler {
         String[] split = connectToId.split("_");
         String edgeId = "Edge_" + node.getNodeId() + "_" + split[split.length - 1];
 
-        Optional<GraphEdge> graphEdgeById = findGraphEdgeById(rootPane, edgeId);
+        Optional<GraphEdge> graphEdgeById = search.findGraphEdgeById(rootPane, edgeId);
         if (graphEdgeById.isEmpty()) {
             edgeId = "Edge_" + split[split.length - 1] + "_" + node.getNodeId();
-            graphEdgeById = findGraphEdgeById(rootPane, edgeId);
+            graphEdgeById = search.findGraphEdgeById(rootPane, edgeId);
         }
 
         return graphEdgeById.isEmpty();
