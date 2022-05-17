@@ -1,29 +1,19 @@
 package com.coursework.graph.controller;
 
-import com.coursework.graph.algorithm.Algorithm;
-import com.coursework.graph.algorithm.GreedAlgorithm;
-import com.coursework.graph.configs.AlgorithmType;
-import com.coursework.graph.entity.GraphEdge;
-import com.coursework.graph.entity.GraphNode;
-import com.coursework.graph.handler.AbstractEventHandler;
-import com.coursework.graph.handler.ConnectHandler;
-import com.coursework.graph.handler.DeleteHandler;
-import com.coursework.graph.handler.MoveHandler;
+import com.coursework.graph.handler.handler.AbstractEventHandler;
+import com.coursework.graph.handler.handler.ConnectHandler;
+import com.coursework.graph.handler.handler.DeleteHandler;
+import com.coursework.graph.handler.handler.MoveHandler;
 import com.coursework.graph.facory.GraphNodeFactory;
 import com.coursework.graph.service.AlgorithmService;
 import com.coursework.graph.service.HandlerService;
-import javafx.application.Platform;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
 import net.rgielen.fxweaver.core.FxmlView;
@@ -31,9 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 
 import static com.coursework.graph.configs.AlgorithmType.APPROX_VERTEX_ALGORITHM;
 import static com.coursework.graph.configs.AlgorithmType.GREED_ALGORITHM;

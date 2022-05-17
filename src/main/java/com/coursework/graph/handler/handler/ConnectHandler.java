@@ -1,9 +1,7 @@
-package com.coursework.graph.handler;
+package com.coursework.graph.handler.handler;
 
 import com.coursework.graph.entity.GraphEdge;
 import com.coursework.graph.entity.GraphNode;
-import com.coursework.graph.service.SearchFxElementsService;
-import com.google.inject.Inject;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.StrokeLineCap;

@@ -1,14 +1,13 @@
 package com.coursework.graph.facory;
 
 import com.coursework.graph.entity.GraphNode;
-import com.coursework.graph.handler.AbstractEventHandler;
+import com.coursework.graph.handler.handler.AbstractEventHandler;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.List;

@@ -1,5 +1,6 @@
 package com.coursework.graph.entity;
 
+import com.sun.javafx.geom.Edge;
 import javafx.scene.shape.Circle;
 import lombok.Data;
 
@@ -16,4 +17,6 @@ public class GraphNode extends Circle {
     public void setNodeId(int nodeId) {
         this.nodeId = nodeId;
     }
+
+
 }

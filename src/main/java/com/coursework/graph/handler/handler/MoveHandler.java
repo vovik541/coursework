@@ -1,4 +1,4 @@
-package com.coursework.graph.handler;
+package com.coursework.graph.handler.handler;
 
 import com.coursework.graph.entity.GraphNode;
 import javafx.scene.layout.AnchorPane;

@@ -3,6 +3,7 @@ package com.coursework.graph.service;
 import com.coursework.graph.algorithm.Algorithm;
 import com.coursework.graph.algorithm.GreedAlgorithm;
 import com.coursework.graph.configs.AlgorithmType;
+import com.coursework.graph.entity.Graph;
 import com.coursework.graph.entity.GraphEdge;
 import com.coursework.graph.entity.GraphNode;
 import com.coursework.graph.javafxappication.JavaFxApplication;
@@ -29,7 +30,7 @@ public class AlgorithmService {
         List<GraphNode> nodes = search.findAllGraphNodes(rootPanel);
         List<GraphEdge> edges = search.findAllGraphEdges(rootPanel);
 
-        algorithm.findCoverage(nodes, edges);
+        algorithm.findCoverage(new Graph(nodes, edges));
     }
 
     private Algorithm getAlgorithm(String algorithmName) {
