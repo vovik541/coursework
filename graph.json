@@ -1,0 +1,46 @@
+{
+  "nodes": [
+    {
+      "x": 360.0,
+      "y": 228.0,
+      "nodeId": 1
+    },
+    {
+      "x": 589.6,
+      "y": 212.0,
+      "nodeId": 2
+    },
+    {
+      "x": 539.2,
+      "y": 318.40000000000003,
+      "nodeId": 3
+    },
+    {
+      "x": 516.8,
+      "y": 91.2,
+      "nodeId": 4
+    }
+  ],
+  "edge": [
+    {
+      "beginNodeId": 2,
+      "endNodeId": 1
+    },
+    {
+      "beginNodeId": 2,
+      "endNodeId": 4
+    },
+    {
+      "beginNodeId": 1,
+      "endNodeId": 3
+    },
+    {
+      "beginNodeId": 4,
+      "endNodeId": 1
+    },
+    {
+      "beginNodeId": 3,
+      "endNodeId": 4
+    }
+  ]
+}
