@@ -1,10 +1,12 @@
-package com.coursework.graph.handler.handler;
+package com.coursework.graph.handler.handlermanager;
 
 import com.coursework.graph.entity.nodeextension.GraphNode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
+import org.springframework.stereotype.Service;
 
-public class MoveHandler extends AbstractEventHandler {
+@Service
+public class MoveHandlerManager extends AbstractEventHandler {
     @Override
     public void changeHandler(AnchorPane rootPane, GraphNode node) {
         node.setOnMousePressed((t) -> {

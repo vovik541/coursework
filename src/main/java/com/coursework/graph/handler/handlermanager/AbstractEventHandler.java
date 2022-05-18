@@ -1,4 +1,4 @@
-package com.coursework.graph.handler.handler;
+package com.coursework.graph.handler.handlermanager;
 
 import com.coursework.graph.entity.nodeextension.GraphNode;
 import com.coursework.graph.service.SearchFxElementsService;
@@ -8,7 +8,6 @@ import javafx.scene.paint.Color;
 import java.util.List;
 
 public abstract class AbstractEventHandler {
-
     protected SearchFxElementsService search = new SearchFxElementsService();
     protected static String connectToId;
     protected double orgSceneX, orgSceneY;

@@ -1,12 +1,14 @@
 package com.coursework.graph.facory;
 
 import com.coursework.graph.entity.nodeextension.GraphNode;
-import com.coursework.graph.handler.handler.AbstractEventHandler;
+import com.coursework.graph.handler.handlermanager.AbstractEventHandler;
+import com.coursework.graph.service.StyleChangerService;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Comparator;
@@ -17,20 +19,19 @@ import java.util.stream.Collectors;
 @Component
 public class GraphNodeFactory {
 
+    @Autowired
+    private StyleChangerService styleService;
     public void createGraphNode(AnchorPane rootPane, AbstractEventHandler handler) {
         int numberOfNodes = generateNumberOfRaw(rootPane);
 
         GraphNode graphNode = new GraphNode();
-        graphNode.setCenterX(80);
-        graphNode.setCenterY(80);
+        styleService.stylishDefaultNode(graphNode);
+
+        graphNode.setCenterX(600);
+        graphNode.setCenterY(100);
         graphNode.setRadius(20);
-        graphNode.setFill(Color.GAINSBORO);
-        graphNode.setStrokeWidth(3);
-        graphNode.setStroke(Color.BLACK);
         graphNode.setId("Node_" + numberOfNodes);
         graphNode.setNodeId(numberOfNodes);
-
-        handler.changeHandler(rootPane, graphNode);
 
         Text text = new Text(String.valueOf(numberOfNodes));
         text.xProperty().bind(graphNode.centerXProperty().add(20));
@@ -38,6 +39,9 @@ public class GraphNodeFactory {
         text.setId("Text_" + numberOfNodes);
         text.setFont(new Font(26));
         text.toFront();
+
+        handler.changeHandler(rootPane, graphNode);
+
         rootPane.getChildren().addAll(graphNode, text);
     }
 

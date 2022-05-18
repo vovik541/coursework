@@ -1,12 +1,14 @@
-package com.coursework.graph.handler.handler;
+package com.coursework.graph.handler.handlermanager;
 
 import com.coursework.graph.entity.nodeextension.GraphEdge;
 import com.coursework.graph.entity.nodeextension.GraphNode;
 import javafx.scene.layout.AnchorPane;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public class DeleteHandler extends AbstractEventHandler {
+@Service
+public class DeleteHandlerManager extends AbstractEventHandler {
     @Override
     public void changeHandler(AnchorPane rootPane, GraphNode node) {
         node.setOnMousePressed((t) -> {

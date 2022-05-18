@@ -1,19 +1,19 @@
 package com.coursework.graph.controller;
 
-import com.coursework.graph.handler.handler.AbstractEventHandler;
-import com.coursework.graph.handler.handler.ConnectHandler;
-import com.coursework.graph.handler.handler.DeleteHandler;
-import com.coursework.graph.handler.handler.MoveHandler;
+import com.coursework.graph.handler.handlermanager.AbstractEventHandler;
+import com.coursework.graph.handler.handlermanager.ConnectHandlerManager;
+import com.coursework.graph.handler.handlermanager.DeleteHandlerManager;
+import com.coursework.graph.handler.handlermanager.MoveHandlerManager;
 import com.coursework.graph.facory.GraphNodeFactory;
 import com.coursework.graph.service.AlgorithmService;
 import com.coursework.graph.service.HandlerService;
 import com.coursework.graph.service.SaveLoadService;
+import com.coursework.graph.service.StyleChangerService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.RadioButton;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -25,7 +25,6 @@ import org.springframework.stereotype.Component;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.WeakHashMap;
 
 import static com.coursework.graph.configs.AlgorithmType.APPROX_VERTEX_ALGORITHM;
 import static com.coursework.graph.configs.AlgorithmType.GREED_ALGORITHM;
@@ -49,15 +48,27 @@ public class AlgorithmController implements Initializable {
     private ChoiceBox<String> chooseAlgorithm;
     @FXML
     private ImageView saveIcon;
+    @FXML
+    private ImageView loadIcon;
+    @FXML
+    private ImageView refreshIcon;
     @Autowired
     private GraphNodeFactory graphNodeFactory;
     @Autowired
     private HandlerService handlerService;
     @Autowired
     private AlgorithmService algorithmService;
+    @Autowired
+    private StyleChangerService styleChangerService;
 
     @Autowired
     private SaveLoadService saveLoadService;
+    @Autowired
+    private MoveHandlerManager moveHandlerManager;
+    @Autowired
+    private ConnectHandlerManager connectHandlerManager;
+    @Autowired
+    private DeleteHandlerManager deleteHandlerManager;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -65,6 +76,8 @@ public class AlgorithmController implements Initializable {
         chooseAlgorithm.setOnAction(this::getAlgorithm);
         chooseAlgorithm.setValue("Greed Algorithm");
         saveIcon.setOnMouseClicked(x -> saveLoadService.saveGraph(rootPane));
+        loadIcon.setOnMouseClicked(x -> saveLoadService.load(rootPane));
+        refreshIcon.setOnMouseClicked(x -> styleChangerService.changeAllToDefault(rootPane));
     }
 
     public void getAlgorithm(ActionEvent event) {
@@ -72,32 +85,32 @@ public class AlgorithmController implements Initializable {
         algorithmLabel.setText(value);
     }
 
-    public void createNode(ActionEvent event) {
+    public void createNode() {
         AbstractEventHandler handler;
         if (connectNodesRB.isSelected()) {
-            handler = new ConnectHandler();
+            handler = connectHandlerManager;
         } else if (moveNodeRB.isSelected()) {
-            handler = new MoveHandler();
+            handler = moveHandlerManager;
         } else {
-            handler = new DeleteHandler();
+            handler = deleteHandlerManager;
         }
         graphNodeFactory.createGraphNode(rootPane, handler);
     }
 
-    public void moveNoteSelected(ActionEvent event) {
-        handlerService.changeHandler(rootPane, new MoveHandler());
+    public void moveNoteSelected() {
+        handlerService.changeHandler(rootPane, moveHandlerManager);
     }
 
-    public void connectNoteSelected(ActionEvent event) {
-        handlerService.changeHandler(rootPane, new ConnectHandler());
+    public void connectNoteSelected() {
+        handlerService.changeHandler(rootPane, connectHandlerManager);
     }
 
-    public void deleteNoteSelected(ActionEvent event) {
-        handlerService.changeHandler(rootPane, new DeleteHandler());
+    public void deleteNoteSelected() {
+        handlerService.changeHandler(rootPane, deleteHandlerManager);
     }
 
     @SneakyThrows
-    public void runAlgorithm(ActionEvent event) {
+    public void runAlgorithm() {
         algorithmService.findCoverage(rootPane, chooseAlgorithm.getValue());
     }
 

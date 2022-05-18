@@ -22,7 +22,7 @@ public class SaveLoadService {
         serializerService.saveGraphDto(graphDto);
     }
 
-    public Graph load() {
+    public Graph load(AnchorPane rootPane) {
         GraphDto dto = serializerService.loadGraphDto();
         //todo
 //        Graph graph = mapperService.dtoToGraph(dto);

@@ -1,6 +1,6 @@
 package com.coursework.graph.service;
 
-import com.coursework.graph.handler.handler.AbstractEventHandler;
+import com.coursework.graph.handler.handlermanager.AbstractEventHandler;
 import javafx.scene.layout.AnchorPane;
 import org.springframework.stereotype.Service;
 

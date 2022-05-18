@@ -1,14 +1,21 @@
-package com.coursework.graph.handler.handler;
+package com.coursework.graph.handler.handlermanager;
 
 import com.coursework.graph.entity.nodeextension.GraphEdge;
 import com.coursework.graph.entity.nodeextension.GraphNode;
+import com.coursework.graph.service.StyleChangerService;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.StrokeLineCap;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-public class ConnectHandler extends AbstractEventHandler {
+@Service
+public class ConnectHandlerManager extends AbstractEventHandler {
+
+    @Autowired
+    private StyleChangerService styleService;
+
     @Override
     public void changeHandler(AnchorPane rootPane, GraphNode node) {
         node.setOnMousePressed((x) -> {
@@ -35,12 +42,11 @@ public class ConnectHandler extends AbstractEventHandler {
         graphEdge.startYProperty().bind(node1.centerYProperty());
         graphEdge.endXProperty().bind(node2.centerXProperty());
         graphEdge.endYProperty().bind(node2.centerYProperty());
-        graphEdge.setStrokeWidth(1);
-        graphEdge.setStrokeLineCap(StrokeLineCap.BUTT);
-        graphEdge.getStrokeDashArray().setAll(1.0, 4.0);
         graphEdge.setBeginNodeId(node1.getNodeId());
         graphEdge.setEndNodeId(node2.getNodeId());
         graphEdge.setId("Edge_" + node1.getNodeId() + "_" + node2.getNodeId());
+
+        styleService.stylishDefaultEdge(graphEdge);
 
         return graphEdge;
     }
