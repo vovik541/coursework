@@ -4,10 +4,12 @@ import com.coursework.graph.entity.jsondto.GraphDto;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import lombok.SneakyThrows;
+import org.springframework.stereotype.Service;
 
 import java.io.*;
 
-public class JsonSerializer implements Serializer {
+@Service
+public class JsonSerializerService implements Serializer {
     @SneakyThrows
     public GraphDto loadGraphDto() {
         try (FileReader reader = new FileReader("graph.json")) {
