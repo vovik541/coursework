@@ -10,9 +10,12 @@ import java.io.*;
 
 @Service
 public class JsonSerializerService implements Serializer {
+
+    private final String fileStoragePath = "src/main/resources/saves/";
+
     @SneakyThrows
     public GraphDto loadGraphDto() {
-        try (FileReader reader = new FileReader("graph.json")) {
+        try (FileReader reader = new FileReader(fileStoragePath + "graph.json")) {
             BufferedReader br = new BufferedReader(reader);
             return new Gson().fromJson(br, GraphDto.class);
         }
@@ -20,7 +23,7 @@ public class JsonSerializerService implements Serializer {
 
     @SneakyThrows
     public void saveGraphDto(GraphDto graphDto) {
-        try (Writer writer = new FileWriter("graph.json")) {
+        try (Writer writer = new FileWriter(fileStoragePath + "graph.json")) {
             Gson gson = new GsonBuilder().create();
             gson.toJson(graphDto, writer);
         }
