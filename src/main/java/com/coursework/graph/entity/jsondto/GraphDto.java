@@ -9,10 +9,10 @@ import java.util.List;
 @NoArgsConstructor
 public class GraphDto {
     List<NodeDto> nodes;
-    List<EdgeDto> edge;
+    List<EdgeDto> edges;
 
-    public GraphDto(List<NodeDto> nodes, List<EdgeDto> edge) {
+    public GraphDto(List<NodeDto> nodes, List<EdgeDto> edges) {
         this.nodes = nodes;
-        this.edge = edge;
+        this.edges = edges;
     }
 }

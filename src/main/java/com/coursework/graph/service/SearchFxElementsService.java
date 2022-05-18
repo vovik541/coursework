@@ -2,6 +2,7 @@ package com.coursework.graph.service;
 
 import com.coursework.graph.entity.nodeextension.GraphEdge;
 import com.coursework.graph.entity.nodeextension.GraphNode;
+import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,13 @@ public class SearchFxElementsService {
                 .findFirst();
     }
 
+    public List<Text> findAllTextNodes(AnchorPane rootPane) {
+        return rootPane.getChildren().stream()
+                .filter(x -> x.getId() != null && x.getId().contains("Text_"))
+                .map(x -> (Text) x)
+                .collect(Collectors.toList());
+    }
+
     public Optional<GraphEdge> findGraphEdgeById(AnchorPane rootPane, String id) {
         return rootPane.getChildren().stream()
                 .filter(x -> x.getId() != null && x.getId().equals(id))
@@ -45,5 +53,11 @@ public class SearchFxElementsService {
                 .filter(x -> x.getId() != null && x.getId().contains("Edge_"))
                 .map(x -> (GraphEdge) x)
                 .collect(Collectors.toList());
+    }
+
+    public Optional<Node> findById(AnchorPane rootPane, String id) {
+        return rootPane.getChildren().stream()
+                .filter(x -> x.getId() != null && x.getId().equals(id))
+                .findFirst();
     }
 }

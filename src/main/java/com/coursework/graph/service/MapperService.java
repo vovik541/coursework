@@ -14,11 +14,6 @@ import java.util.List;
 @Service
 public class MapperService {
 
-    public Graph dtoToGraph(GraphDto dto) {
-        //todo
-        return null;
-    }
-
     public GraphDto graphToDto(Graph graph) {
         return new GraphDto(
                 nodesToDto(graph.getNodes()),

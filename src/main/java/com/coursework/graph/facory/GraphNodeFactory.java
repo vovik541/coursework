@@ -18,31 +18,49 @@ import java.util.stream.Collectors;
 
 @Component
 public class GraphNodeFactory {
-
     @Autowired
     private StyleChangerService styleService;
+
     public void createGraphNode(AnchorPane rootPane, AbstractEventHandler handler) {
         int numberOfNodes = generateNumberOfRaw(rootPane);
 
         GraphNode graphNode = new GraphNode();
         styleService.stylishDefaultNode(graphNode);
-
-        graphNode.setCenterX(600);
-        graphNode.setCenterY(100);
-        graphNode.setRadius(20);
-        graphNode.setId("Node_" + numberOfNodes);
-        graphNode.setNodeId(numberOfNodes);
+        this.setNodeAttributes(graphNode, numberOfNodes, 600, 100);
 
         Text text = new Text(String.valueOf(numberOfNodes));
-        text.xProperty().bind(graphNode.centerXProperty().add(20));
-        text.yProperty().bind(graphNode.centerYProperty().add(-16));
-        text.setId("Text_" + numberOfNodes);
-        text.setFont(new Font(26));
-        text.toFront();
+        this.setTextToNode(graphNode, text, numberOfNodes);
 
         handler.changeHandler(rootPane, graphNode);
-
         rootPane.getChildren().addAll(graphNode, text);
+    }
+
+    public void createGraphNode(AnchorPane rootPane, AbstractEventHandler handler, double x, double y, int id) {
+        GraphNode graphNode = new GraphNode();
+        styleService.stylishDefaultNode(graphNode);
+        this.setNodeAttributes(graphNode, id, x, y);
+
+        Text text = new Text(String.valueOf(id));
+        this.setTextToNode(graphNode, text, id);
+
+        handler.changeHandler(rootPane, graphNode);
+        rootPane.getChildren().addAll(graphNode, text);
+    }
+
+    private void setNodeAttributes(GraphNode graphNode, int nodeId, double x, double y) {
+        graphNode.setCenterX(x);
+        graphNode.setCenterY(y);
+        graphNode.setRadius(20);
+        graphNode.setId("Node_" + nodeId);
+        graphNode.setNodeId(nodeId);
+    }
+
+    private void setTextToNode(GraphNode graphNode, Text text, int id) {
+        text.xProperty().bind(graphNode.centerXProperty().add(20));
+        text.yProperty().bind(graphNode.centerYProperty().add(-16));
+        text.setId("Text_" + id);
+        text.setFont(new Font(26));
+        text.toFront();
     }
 
     private int generateNumberOfRaw(AnchorPane rootPane) {

@@ -2,7 +2,7 @@ package com.coursework.graph.handler.handlermanager;
 
 import com.coursework.graph.entity.nodeextension.GraphEdge;
 import com.coursework.graph.entity.nodeextension.GraphNode;
-import com.coursework.graph.service.StyleChangerService;
+import com.coursework.graph.facory.GraphEdgeFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +12,8 @@ import java.util.Optional;
 
 @Service
 public class ConnectHandlerManager extends AbstractEventHandler {
-
     @Autowired
-    private StyleChangerService styleService;
+    private GraphEdgeFactory edgeFactory;
 
     @Override
     public void changeHandler(AnchorPane rootPane, GraphNode node) {
@@ -22,8 +21,7 @@ public class ConnectHandlerManager extends AbstractEventHandler {
             if (connectToId != null && !connectToId.equals(node.getId())) {
                 if (noEdgeFound(rootPane, node)) {
                     Optional<GraphNode> byId = search.findGraphNodeById(rootPane, connectToId);
-                    GraphEdge connected = connect(node, byId.get());
-                    rootPane.getChildren().add(connected);
+                    edgeFactory.createGraphEdge(rootPane, node, byId.get());
                     connectToId = null;
                     changeColor(byId.get(), Color.GAINSBORO);
                 }
@@ -34,21 +32,6 @@ public class ConnectHandlerManager extends AbstractEventHandler {
         });
         node.setOnMouseDragged((x) -> {
         });
-    }
-
-    private GraphEdge connect(GraphNode node1, GraphNode node2) {
-        GraphEdge graphEdge = new GraphEdge();
-        graphEdge.startXProperty().bind(node1.centerXProperty());
-        graphEdge.startYProperty().bind(node1.centerYProperty());
-        graphEdge.endXProperty().bind(node2.centerXProperty());
-        graphEdge.endYProperty().bind(node2.centerYProperty());
-        graphEdge.setBeginNodeId(node1.getNodeId());
-        graphEdge.setEndNodeId(node2.getNodeId());
-        graphEdge.setId("Edge_" + node1.getNodeId() + "_" + node2.getNodeId());
-
-        styleService.stylishDefaultEdge(graphEdge);
-
-        return graphEdge;
     }
 
     public boolean noEdgeFound(AnchorPane rootPane, GraphNode node) {

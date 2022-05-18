@@ -23,10 +23,10 @@ public class StyleChangerService {
         allGraphEdges.forEach(this::stylishDefaultEdge);
     }
 
-    public void stylishDefaultNode(GraphNode graphEdge) {
-        graphEdge.setFill(Color.GAINSBORO);
-        graphEdge.setStrokeWidth(3);
-        graphEdge.setStroke(Color.BLACK);
+    public void stylishDefaultNode(GraphNode graphNode) {
+        graphNode.setFill(Color.GAINSBORO);
+        graphNode.setStrokeWidth(3);
+        graphNode.setStroke(Color.BLACK);
     }
 
     public void stylishDefaultEdge(GraphEdge graphEdge) {
@@ -35,6 +35,7 @@ public class StyleChangerService {
         graphEdge.getStrokeDashArray().setAll(1.0, 4.0);
         graphEdge.setFill(Color.BLACK);
         graphEdge.setStroke(Color.BLACK);
+        graphEdge.toFront();
     }
 
     public void connectEdge(GraphEdge edge, GraphNode begin, GraphNode end) {
