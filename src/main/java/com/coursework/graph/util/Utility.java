@@ -8,8 +8,20 @@ import lombok.SneakyThrows;
 import java.util.Objects;
 
 public class Utility {
-    @SneakyThrows
-    public static Parent getParent(String parentPath) {
-        return FXMLLoader.load(Objects.requireNonNull(JavaFxApplication.class.getResource(parentPath)));
+    public static String transformNodeId(int id){
+        return "Node_" + id;
+    }
+    public static int getIdFromEdgeFullId(String full){
+        String[] split = full.split("_");
+        return split.length - 1;
+    }
+    public static String transformEdgeId(int beginNodeId, int endNodeId){
+        return "Edge_" + beginNodeId + "_" + endNodeId;
+    }
+    public static String transformEdgeId(int beginNodeId, String endNodeId){
+        return "Edge_" + beginNodeId + "_" + endNodeId;
+    }
+    public static String transformTextId(int id){
+        return "Text_" + id;
     }
 }

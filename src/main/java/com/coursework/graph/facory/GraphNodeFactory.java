@@ -15,6 +15,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.coursework.graph.util.Utility.transformNodeId;
+import static com.coursework.graph.util.Utility.transformTextId;
+
 
 @Component
 public class GraphNodeFactory {
@@ -51,14 +54,14 @@ public class GraphNodeFactory {
         graphNode.setCenterX(x);
         graphNode.setCenterY(y);
         graphNode.setRadius(20);
-        graphNode.setId("Node_" + nodeId);
+        graphNode.setId(transformNodeId(nodeId));
         graphNode.setNodeId(nodeId);
     }
 
     private void setTextToNode(GraphNode graphNode, Text text, int id) {
         text.xProperty().bind(graphNode.centerXProperty().add(20));
         text.yProperty().bind(graphNode.centerYProperty().add(-16));
-        text.setId("Text_" + id);
+        text.setId(transformTextId(id));
         text.setFont(new Font(26));
         text.toFront();
     }

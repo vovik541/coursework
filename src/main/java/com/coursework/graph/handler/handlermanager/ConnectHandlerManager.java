@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+import static com.coursework.graph.util.Utility.getIdFromEdgeFullId;
+import static com.coursework.graph.util.Utility.transformEdgeId;
+
 @Service
 public class ConnectHandlerManager extends AbstractEventHandler {
     @Autowired
@@ -35,12 +38,12 @@ public class ConnectHandlerManager extends AbstractEventHandler {
     }
 
     public boolean noEdgeFound(AnchorPane rootPane, GraphNode node) {
-        String[] split = connectToId.split("_");
-        String edgeId = "Edge_" + node.getNodeId() + "_" + split[split.length - 1];
+        int connectedTo = getIdFromEdgeFullId(connectToId);
+        String edgeId = transformEdgeId(node.getNodeId(), connectedTo);
 
         Optional<GraphEdge> graphEdgeById = search.findGraphEdgeById(rootPane, edgeId);
         if (graphEdgeById.isEmpty()) {
-            edgeId = "Edge_" + split[split.length - 1] + "_" + node.getNodeId();
+            edgeId = transformEdgeId(connectedTo, node.getNodeId());
             graphEdgeById = search.findGraphEdgeById(rootPane, edgeId);
         }
 

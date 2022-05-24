@@ -7,12 +7,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static com.coursework.graph.util.Utility.transformTextId;
+
 @Service
 public class DeleteHandlerManager extends AbstractEventHandler {
     @Override
     public void changeHandler(AnchorPane rootPane, GraphNode node) {
         node.setOnMousePressed((t) -> {
-            String textId = "Text_" + node.getNodeId();
+            String textId = transformTextId(node.getNodeId());
             rootPane.getChildren().remove(search.findNodeTextById(rootPane, textId).get());
 
             List<GraphEdge> edges = search.findAllGraphEdges(rootPane);

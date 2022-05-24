@@ -22,6 +22,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static com.coursework.graph.util.Utility.transformNodeId;
+
 @Service
 public class SaveLoadService {
     @Autowired
@@ -64,8 +66,8 @@ public class SaveLoadService {
 
         for (EdgeDto edgeDto : graphDto.getEdges()) {
             graphEdgeFactory.createGraphEdge(rootPane,
-                    search.findGraphNodeById(rootPane, "Node_" + edgeDto.getBeginNodeId()).get(),
-                    search.findGraphNodeById(rootPane, "Node_" + edgeDto.getEndNodeId()).get());
+                    search.findGraphNodeById(rootPane, transformNodeId(edgeDto.getBeginNodeId())).get(),
+                    search.findGraphNodeById(rootPane, transformNodeId(edgeDto.getEndNodeId())).get());
         }
 
         setCurrentHandler(rootPane);
