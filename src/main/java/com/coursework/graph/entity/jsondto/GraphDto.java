@@ -1,5 +1,6 @@
 package com.coursework.graph.entity.jsondto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -7,12 +8,8 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class GraphDto {
-    List<NodeDto> nodes;
-    List<EdgeDto> edges;
-
-    public GraphDto(List<NodeDto> nodes, List<EdgeDto> edges) {
-        this.nodes = nodes;
-        this.edges = edges;
-    }
+    private List<NodeDto> nodes;
+    private List<EdgeDto> edges;
 }
