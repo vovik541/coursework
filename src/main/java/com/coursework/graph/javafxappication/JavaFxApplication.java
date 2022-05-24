@@ -2,7 +2,6 @@ package com.coursework.graph.javafxappication;
 
 import com.coursework.graph.SpringGraphApplication;
 import com.coursework.graph.controller.AlgorithmController;
-
 import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

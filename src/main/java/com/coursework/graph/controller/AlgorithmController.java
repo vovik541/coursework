@@ -69,12 +69,12 @@ public class AlgorithmController implements Initializable {
     private ConnectHandlerManager connectHandlerManager;
     @Autowired
     private DeleteHandlerManager deleteHandlerManager;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         chooseAlgorithm.getItems().addAll(GREED_ALGORITHM.getValue(), APPROX_VERTEX_ALGORITHM.getValue());
         chooseAlgorithm.setOnAction(this::getAlgorithm);
         chooseAlgorithm.setValue("Greed Algorithm");
+        outputText.setText("Greed Algorithm coverage: ");
         saveIcon.setOnMouseClicked(x -> saveLoadService.saveGraph(rootPane));
         loadIcon.setOnMouseClicked(x -> saveLoadService.load(rootPane));
         refreshIcon.setOnMouseClicked(x -> styleChangerService.changeAllToDefault(rootPane));
@@ -83,6 +83,7 @@ public class AlgorithmController implements Initializable {
     public void getAlgorithm(ActionEvent event) {
         String value = chooseAlgorithm.getValue();
         algorithmLabel.setText(value);
+        outputText.setText(value + " coverage: ");
     }
 
     public void createNode() {
