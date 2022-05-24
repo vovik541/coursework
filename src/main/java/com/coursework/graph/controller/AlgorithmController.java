@@ -84,6 +84,7 @@ public class AlgorithmController implements Initializable {
         String value = chooseAlgorithm.getValue();
         algorithmLabel.setText(value);
         outputText.setText(value + " coverage: ");
+        styleChangerService.changeAllToDefault(rootPane);
     }
 
     public void createNode() {

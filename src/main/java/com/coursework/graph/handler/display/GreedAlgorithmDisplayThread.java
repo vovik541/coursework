@@ -1,4 +1,4 @@
-package com.coursework.graph.handler.task;
+package com.coursework.graph.handler.display;
 
 import com.coursework.graph.entity.nodeextension.GraphEdge;
 import com.coursework.graph.entity.nodeextension.GraphNode;
@@ -12,10 +12,10 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TaskThread extends Task<Void> {
+public class GreedAlgorithmDisplayThread extends Task<Void> {
     private LinkedHashMap<GraphNode, List<GraphEdge>> displayStack;
 
-    public TaskThread(LinkedHashMap<GraphNode, List<GraphEdge>> displayStack) {
+    public GreedAlgorithmDisplayThread(LinkedHashMap<GraphNode, List<GraphEdge>> displayStack) {
         this.displayStack = displayStack;
     }
 

@@ -27,6 +27,10 @@ public class Graph {
         return new GraphNode();
     }
 
+    public void deleteNodeByGraphNodeId(int nodeId) {
+        nodes.removeIf(node -> nodeId == node.getNodeId());
+    }
+
     public List<GraphEdge> getAllEdgesByNodeId(int nodeId) {
         List<GraphEdge> edgesByNode = new LinkedList<>();
 
@@ -36,6 +40,21 @@ public class Graph {
             }
         }
         return edgesByNode;
+    }
+
+    public void deleteEdgesByNodeId(int nodeId) {
+        edges.removeIf(edge -> edge.isConnectedToNodeId(nodeId));
+    }
+
+    public List<GraphNode> getNodesByEdge(GraphEdge edge) {
+        List<GraphNode> connectedTo = new LinkedList<>();
+        for (GraphNode node : nodes) {
+            if (edge.isConnectedToNodeId(node.getNodeId())) {
+                connectedTo.add(node);
+            }
+        }
+
+        return connectedTo;
     }
 
     public void deleteNodeFromGraph(GraphNode node) {

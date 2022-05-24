@@ -1,6 +1,7 @@
 package com.coursework.graph.service;
 
 import com.coursework.graph.algorithm.Algorithm;
+import com.coursework.graph.algorithm.ApproxVertexCoverAlgorithm;
 import com.coursework.graph.algorithm.GreedAlgorithm;
 import com.coursework.graph.entity.nodeextension.Graph;
 import com.coursework.graph.entity.nodeextension.GraphEdge;
@@ -31,7 +32,7 @@ public class AlgorithmService {
         if (GREED_ALGORITHM.getValue().equals(algorithmName)) {
             return new GreedAlgorithm();
         } else {
-            return null; //todo
+            return new ApproxVertexCoverAlgorithm();
         }
     }
 

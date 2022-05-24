@@ -4,7 +4,7 @@ import com.coursework.graph.entity.nodeextension.Graph;
 import com.coursework.graph.entity.nodeextension.GraphEdge;
 import com.coursework.graph.entity.nodeextension.GraphNode;
 
-import com.coursework.graph.handler.task.TaskThread;
+import com.coursework.graph.handler.display.GreedAlgorithmDisplayThread;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -27,7 +27,7 @@ public class GreedAlgorithm implements Algorithm {
 
             displayStack.put(node, edges);
         }
-        new TaskThread(displayStack).start();
+        new GreedAlgorithmDisplayThread(displayStack).start();
     }
 
     private GraphNode findNodeWithMostEdges(Graph graph) {
