@@ -50,8 +50,8 @@ public class ApproxVertexAlgorithmDisplayThread extends Task<Void> {
                 }
             });
         }
-        outputText.setText(outputText.getText() + " ]");
-        outputText.setText(outputText.getText().replace(", ]", " ]"));
+        outputText.setText(outputText.getText() + " }");
+        outputText.setText(outputText.getText().replace(", }", " }"));
         return null;
     }
 
