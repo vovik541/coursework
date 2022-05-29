@@ -4,7 +4,7 @@ import com.coursework.graph.handler.handlermanager.AbstractEventHandler;
 import com.coursework.graph.handler.handlermanager.ConnectHandlerManager;
 import com.coursework.graph.handler.handlermanager.DeleteHandlerManager;
 import com.coursework.graph.handler.handlermanager.MoveHandlerManager;
-import com.coursework.graph.facory.GraphNodeFactory;
+import com.coursework.graph.entity.facory.GraphNodeFactory;
 import com.coursework.graph.service.AlgorithmService;
 import com.coursework.graph.service.HandlerService;
 import com.coursework.graph.service.SaveLoadService;
@@ -76,7 +76,7 @@ public class AlgorithmController implements Initializable {
         chooseAlgorithm.setValue("Greed Algorithm");
         outputText.setText("Greed Algorithm coverage: ");
         saveIcon.setOnMouseClicked(x -> saveLoadService.saveGraph(rootPane));
-        loadIcon.setOnMouseClicked(x -> saveLoadService.load(rootPane));
+        loadIcon.setOnMouseClicked(x -> saveLoadService.loadGraph(rootPane));
         refreshIcon.setOnMouseClicked(x -> styleChangerService.changeAllToDefault(rootPane));
     }
 

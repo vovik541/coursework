@@ -1,7 +1,11 @@
 package com.coursework.graph.entity.nodeextension;
 
 import javafx.scene.shape.Circle;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class GraphNode extends Circle {
     private int nodeId;
 

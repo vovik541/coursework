@@ -2,7 +2,7 @@ package com.coursework.graph.handler.handlermanager;
 
 import com.coursework.graph.entity.nodeextension.GraphEdge;
 import com.coursework.graph.entity.nodeextension.GraphNode;
-import com.coursework.graph.facory.GraphEdgeFactory;
+import com.coursework.graph.entity.facory.GraphEdgeFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import org.springframework.beans.factory.annotation.Autowired;

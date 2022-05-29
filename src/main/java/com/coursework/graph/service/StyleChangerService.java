@@ -37,8 +37,4 @@ public class StyleChangerService {
         graphEdge.setStroke(Color.BLACK);
         graphEdge.toFront();
     }
-
-    public void connectEdge(GraphEdge edge, GraphNode begin, GraphNode end) {
-        //todo
-    }
 }

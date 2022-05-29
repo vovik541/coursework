@@ -1,4 +1,4 @@
-package com.coursework.graph.facory;
+package com.coursework.graph.entity.facory;
 
 import com.coursework.graph.entity.nodeextension.GraphNode;
 import com.coursework.graph.handler.handlermanager.AbstractEventHandler;

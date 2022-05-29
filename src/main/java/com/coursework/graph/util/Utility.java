@@ -3,8 +3,8 @@ public class Utility {
     public static String transformNodeId(int id){
         return "Node_" + id;
     }
-    public static int getIdFromEdgeFullId(String full){
-        String[] split = full.split("_");
+    public static int getIdFromEdgeFullId(String fullId){
+        String[] split = fullId.split("_");
         return split.length - 1;
     }
     public static String transformEdgeId(int beginNodeId, int endNodeId){

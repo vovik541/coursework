@@ -6,14 +6,13 @@ import com.coursework.graph.entity.jsondto.NodeDto;
 import com.coursework.graph.entity.nodeextension.Graph;
 import com.coursework.graph.entity.nodeextension.GraphEdge;
 import com.coursework.graph.entity.nodeextension.GraphNode;
-import com.coursework.graph.facory.GraphEdgeFactory;
-import com.coursework.graph.facory.GraphNodeFactory;
+import com.coursework.graph.entity.facory.GraphEdgeFactory;
+import com.coursework.graph.entity.facory.GraphNodeFactory;
 import com.coursework.graph.handler.handlermanager.AbstractEventHandler;
 import com.coursework.graph.handler.handlermanager.ConnectHandlerManager;
 import com.coursework.graph.handler.handlermanager.DeleteHandlerManager;
 import com.coursework.graph.handler.handlermanager.MoveHandlerManager;
 import com.coursework.graph.service.serializer.JsonSerializerService;
-import javafx.scene.Node;
 import javafx.scene.control.RadioButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -51,7 +50,7 @@ public class SaveLoadService {
         serializerService.saveGraphDto(graphDto);
     }
 
-    public void load(AnchorPane rootPane) {
+    public void loadGraph(AnchorPane rootPane) {
         deleteAllElementsFromView(rootPane);
 
         GraphDto graphDto = serializerService.loadGraphDto();
