@@ -3,15 +3,19 @@ package com.coursework.graph.service.serializer;
 import com.coursework.graph.entity.jsondto.GraphDto;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import lombok.Data;
 import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
 
+@Data
 @Service
 public class JsonSerializerService implements Serializer {
 
-    private final String fileStoragePath = "src/main/resources/saves/";
+    @Value("${file.storage.path}")
+    private String fileStoragePath;
 
     @SneakyThrows
     public GraphDto loadGraphDto() {
